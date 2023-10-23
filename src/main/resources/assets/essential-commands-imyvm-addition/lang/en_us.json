@@ -1,0 +1,18 @@
+{
+  "ecomy.cmd.error.evaluation_exception": "An error occurred while calculating",
+  "ecomy.cmd.error.no_such_operation": "No such operation",
+  "ecomy.cmd.error.no_such_player": "No such player",
+  "ecomy.cmd.error.on_cooldown": "This order is cooling down",
+  "ecomy.cmd.error.no_enough_money": "The player who initiated the teleport does not have enough money",
+  "ecomy.cmd.error.no_such_homewarp": "This home port does not exist",
+  "ecomy.cmd.error.homewarp_string_corruption": "The string storing related information is corrupted, please contact your administrator for assistance.",
+  "ecomy.cmd.error.homewarp_player_already_exists": "Player \"${0}\" already exists",
+  "ecomy.info.take_money": "This operation costs \"${0}\"",
+  "cmd.warp.home.player.add.feedback": "Player \"${0}\" has been added.",
+  "cmd.warp.home.player.del.feedback": "Player \"${0}\" has been deleted",
+  "cmd.warp.home.set.feedback":  "Home port \"${0}\" has been set.",
+  "cmd.warp.home.set.error.not_found":  "No waypoint named \"${0}\" found.",
+  "cmd.warp.home.set.exists":  "Unable to set local port \"${0}\" repeatedly.",
+  "cmd.warp.home.no_enough_money": "You do not have enough money to perform this operation.",
+  "cmd.warp.home.mode.change": "Switch mode successfully."
+}

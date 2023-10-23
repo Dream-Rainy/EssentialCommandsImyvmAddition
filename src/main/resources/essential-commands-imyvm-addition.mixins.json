@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "com.imyvm.essentialCommandsImyvmAddition.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EssentialCommandsBack",
+    "EssentialCommandsHome",
+    "EssentialCommandsHomeSet",
+    "EssentialCommandsLangMixin",
+    "EssentialCommandsSendDelay",
+    "EssentialCommandsSetTpaDelay",
+    "EssentialCommandsTakeMoney",
+    "EssentialCommandsTpaCheck",
+    "EssentialCommandsTpaHereCheck"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "ecomy.cmd.error.evaluation_exception": "计算时出现错误",
+  "ecomy.cmd.error.no_such_operation": "该操作并不存在",
+  "ecomy.cmd.error.no_such_player": "该玩家并不存在",
+  "ecomy.cmd.error.on_cooldown": "该操作正在冷却",
+  "ecomy.cmd.error.no_enough_money": "发起传送请求的玩家并没有足够的金钱",
+  "ecomy.info.take_money": "本次操作花费 ${0}",
+  "cmd.warp.home.set.feedback":  "已设置本埠 \"${0}\" 。",
+  "cmd.warp.home.set.error.not_found":  "找不到名为 \"${0}\" 的传送点。",
+  "cmd.warp.home.set.exists":  "无法重复设置本埠 \"${0}\" 。",
+  "ecomy.cmd.error.no_such_homewarp": "该本埠并不存在",
+  "ecomy.cmd.error.homewarp_string_corruption": "存储相关信息的字符串已损坏，请联系您的管理员寻求帮助。",
+  "ecomy.cmd.error.homewarp_player_already_exists": "该玩家早已存在",
+  "cmd.warp.home.player.add.feedback": "成功添加玩家 \"${0}\" ",
+  "cmd.warp.home.player.del.feedback": "成功删除玩家 \"${0}\" ",
+  "cmd.warp.home.no_enough_money": "您没有足够的金钱来执行此操作。",
+  "cmd.warp.home.mode.change": "切换模式成功"
+}

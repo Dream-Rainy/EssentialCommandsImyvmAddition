@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "essential-commands-imyvm-addition",
+	"version": "${version}",
+	"name": "Essential Commands Imyvm Addition",
+	"description": "",
+	"authors": [
+		"DreamRain"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "AGPL-3.0",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"value": "com.imyvm.essentialCommandsImyvmAddition.EssentialCommandsImyvmAdditionMain",
+				"adapter": "kotlin"
+			}
+		]
+	},
+	"mixins": [
+		"essential-commands-imyvm-addition.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"fabric-language-kotlin": ">=1.9.10",
+		"imyvm_economy": ">=1.2.4",
+		"essential_commands": ">=0.33.2-mc1.20"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
