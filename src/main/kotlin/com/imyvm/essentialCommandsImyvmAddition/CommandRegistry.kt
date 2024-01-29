@@ -33,7 +33,7 @@ fun register(
             .executes(
                 ListCommandFactory.create(
                     ECText.getInstance().getString("cmd.warp.list.start"),
-                    "warp tp"
+                    "homewarp tp"
                 ) { context: CommandContext<ServerCommandSource> ->
                     HomeWarpManager.getAccessibleWarps(context.source.playerOrThrow)
                 }

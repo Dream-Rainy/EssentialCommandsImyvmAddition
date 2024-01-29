@@ -16,7 +16,7 @@ object EssentialCommandsImyvmAdditionMain : ModInitializer {
 	private val BACKING_ECONOMY_CONFIG = EssentialEconomyConfig(
 		Path.of("./config/EssentialEconomy.properties"),
 		"Essential Economy Config",
-		""
+		"https://github.com/Dream-Rainy/EssentialCommandsImyvmAddition"
 	)
 
 	var ECONOMY_CONFIG = EssentialEconomyConfigSnapshot.create(BACKING_ECONOMY_CONFIG)

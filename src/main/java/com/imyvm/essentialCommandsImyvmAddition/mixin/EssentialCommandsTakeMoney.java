@@ -22,7 +22,7 @@ public abstract class EssentialCommandsTakeMoney {
         var teleportData = EconomyUtil.INSTANCE.getOperationMoneyShouldTake(playerEntity, dest);
         var playerEntityEconomyData = EconomyMod.data.getOrCreate(teleportData.getPlayerEntity());
         var moneyShouldTake = teleportData.getBalanceShouldTake() * 100;
-        if (playerEntityEconomyData.getMoney() <= moneyShouldTake) {
+        if (playerEntityEconomyData.getMoney() < moneyShouldTake) {
             ci.cancel();
             EconomyUtil.INSTANCE.teleportDataMapDelete(new EconomyUtil.TeleportKey(dest.pos(), playerEntity.getUuid()));
             throw EssentialCommandsImyvmAdditionMain.INSTANCE.getNO_ENOUGH_MONEY().create();

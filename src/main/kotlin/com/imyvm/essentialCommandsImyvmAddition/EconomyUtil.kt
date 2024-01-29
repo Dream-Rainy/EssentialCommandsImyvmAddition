@@ -180,12 +180,12 @@ object EconomyUtil {
                 getPlayerCommandCount(playerEntity, TPA)
             )
         )
-        if (balance < moneyShouldTake) {
+        if (balance < moneyShouldTake * 100) {
             cir.setReturnValue(0)
             throw NO_ENOUGH_MONEY.create()
         }
         val key = TeleportKey(playerEntity.pos, playerEntity.uuid)
-        val data = TeleportData(TPA, playerEntity, moneyShouldTake)
+        val data = TeleportData(TPA, playerEntity, moneyShouldTake * 100)
         teleportDataMap[key] = data
     }
 
@@ -207,7 +207,7 @@ object EconomyUtil {
                 getPlayerCommandCount(playerEntity, operationType)
             )
         )
-        if (balance < moneyShouldTake) {
+        if (balance < moneyShouldTake * 100) {
             throw NO_ENOUGH_MONEY.create()
         }
         val key = TeleportKey(location.pos(), playerEntity.uuid)
@@ -232,7 +232,7 @@ object EconomyUtil {
                     getPlayerCommandCount(player, WARP_TP)
                 )
             )
-            if (balance < moneyShouldTake) {
+            if (balance < moneyShouldTake * 100) {
                 return false
             }
             val key = TeleportKey(location.pos(), player.uuid)
@@ -240,6 +240,6 @@ object EconomyUtil {
             teleportDataMap[key] = data
             return true
         }
-        return false
+        return true
     }
 }

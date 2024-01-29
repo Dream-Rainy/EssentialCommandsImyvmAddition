@@ -36,7 +36,7 @@ object HomeWarpManager: PersistentState() {
     private val homeWarps: WarpStorage = WarpStorage()
     private var saveDir: Path? = null
     private var worldDataFile: File? = null
-    private val HOME_WARP_KEYS = "homewarps"
+    private const val HOME_WARP_KEYS = "homewarps"
 
     private val NO_SUCH_HOME_WARP = SimpleCommandExceptionType(
         ECText.getInstance().getText(
@@ -122,7 +122,7 @@ object HomeWarpManager: PersistentState() {
         homeWarps.putCommand(
             warpName, WarpLocation(
                 location,
-                "${type};${owner.uuidAsString};;",
+                "${type};${owner.uuidAsString};\"0\";\"0\"",
                 warpName,
             )
         )
@@ -213,10 +213,6 @@ object HomeWarpManager: PersistentState() {
     }
 
     fun getAccessibleWarps(player: ServerPlayerEntity): List<MutableMap.MutableEntry<String, WarpLocation>> {
-//        val warpsStream: Stream<WarpLocation> = this.homeWarps.values.stream()
-//        return warpsStream.filter { loc: WarpLocation ->
-//            checkPermission(loc.name, player)
-//        }
         return this.homeWarps.entries.filter { loc: MutableMap.MutableEntry<String, WarpLocation> ->
             checkPermission(loc.value.name, player)
         }
@@ -255,7 +251,7 @@ object HomeWarpManager: PersistentState() {
         )
     }
 
-    fun parseListSection(section: String): MutableList<String> {
+    private fun parseListSection(section: String): MutableList<String> {
         val parts = section.split(",")
         return if (parts.size == 1 && parts[0].isEmpty()) mutableListOf() else parts.toMutableList()
     }
@@ -266,7 +262,11 @@ object HomeWarpManager: PersistentState() {
             ?: throw HOME_WARP_STRING_CORRUPTION.create()
         val owner = parts[1]
         val joinlist = parseListSection(parts[2])
-        val blacklist = parseListSection(parts[3])
+        val blacklist = if (parts.size == 4) {
+            parseListSection(parts[3])
+        } else {
+            mutableListOf()
+        }
         return ParsedData(flag, owner, joinlist, blacklist)
     }
 
