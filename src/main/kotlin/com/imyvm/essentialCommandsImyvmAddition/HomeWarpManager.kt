@@ -14,6 +14,9 @@ import net.fabricmc.fabric.api.event.Event
 import net.fabricmc.fabric.api.event.EventFactory
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtIo
+import net.minecraft.nbt.NbtSizeTracker
+import net.minecraft.registry.DynamicRegistryManager
+import net.minecraft.registry.RegistryWrapper
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.util.WorldSavePath
@@ -72,10 +75,10 @@ object HomeWarpManager: PersistentState() {
         try {
             val fileExisted = !worldDataFile!!.createNewFile()
             if (fileExisted && worldDataFile!!.length() > 0) {
-                this.fromNbt(NbtIo.readCompressed(worldDataFile).getCompound("data"))
+                this.fromNbt(NbtIo.readCompressed(worldDataFile!!.toPath(), NbtSizeTracker.ofUnlimitedBytes()).getCompound("data"))
             } else {
                 this.markDirty()
-                this.save()
+                this.save(server.registryManager)
             }
         } catch (e: IOException) {
             EssentialCommandsImyvmAdditionMain.LOGGER.error(
@@ -103,13 +106,13 @@ object HomeWarpManager: PersistentState() {
         }
     }
 
-    private fun save() {
+    private fun save(warpperLoockup:RegistryWrapper.WrapperLookup) {
         EssentialCommandsImyvmAdditionMain.LOGGER.info("Saving world_data.dat (HomeWarps)...")
-        super.save(worldDataFile)
+        super.save(worldDataFile, warpperLoockup)
         EssentialCommandsImyvmAdditionMain.LOGGER.info("world_data.dat saved.")
     }
 
-    override fun writeNbt(nbt: NbtCompound): NbtCompound {
+    override fun writeNbt(nbt: NbtCompound, registryLookup: RegistryWrapper.WrapperLookup?): NbtCompound {
         // Warps to NBT
         val warpsNbt = NbtCompound()
         homeWarps.writeNbt(warpsNbt)
@@ -127,7 +130,7 @@ object HomeWarpManager: PersistentState() {
             )
         )
         markDirty()
-        this.save()
+        this.save(DynamicRegistryManager.EMPTY)
     }
 
     @Throws(CommandSyntaxException::class)
@@ -143,7 +146,7 @@ object HomeWarpManager: PersistentState() {
             val newPermissionString = composeString(data)
             changeHomeWarpPermissiongString(warpName, newPermissionString)
             markDirty()
-            this.save()
+            this.save(DynamicRegistryManager.EMPTY)
         } else {
             val message = StringReader(playerNeedAdd.name.string)
             throw HOME_WARP_PLAYER_ALREADY_EXISTS.createWithContext(message)
@@ -158,7 +161,7 @@ object HomeWarpManager: PersistentState() {
         if (data.owner == senderPlayerEntity.uuidAsString) {
             val prevValue: WarpLocation? = homeWarps.remove(warpName)
             markDirty()
-            this.save()
+            this.save(DynamicRegistryManager.EMPTY)
             return prevValue != null
         } else {
                throw NO_SUCH_HOME_WARP.create()
@@ -223,7 +226,7 @@ object HomeWarpManager: PersistentState() {
         return warpStream.filter { loc: WarpLocation ->
             val permissionString = loc.permissionString
             val data = parseString(permissionString)
-            data.owner == player.entityName
+            data.owner == player.nameForScoreboard
         }
     }
 

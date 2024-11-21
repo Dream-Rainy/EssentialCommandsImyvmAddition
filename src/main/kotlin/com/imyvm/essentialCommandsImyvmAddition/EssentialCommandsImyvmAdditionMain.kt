@@ -68,6 +68,10 @@ object EssentialCommandsImyvmAdditionMain : ModInitializer {
 		ServerLifecycleEvents.SERVER_STARTING.register { server ->
 			HomeWarpManager.onServerStart(server)
 		}
+		ServerLifecycleEvents.SERVER_STOPPING.register{
+			timer.cancel()
+			LOGGER.info("Essential Commands Imyvm Addition stopped")
+		}
 		LOGGER.info("Essential Commands Imyvm Addition initialized")
 	}
 }
